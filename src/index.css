@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Jaini&family=Lilita+One&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+Bubbles&family=Uncial+Antiqua&display=swap');
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: start;
+  align-items: center;
+  background-image: url('./assets/rosePattern.png');
+  background-position: center;
+  background-size: cover;
+  color: #ffc65d;
+}
+.rubik-bubbles-regular {
+  font-family: "Rubik Bubbles", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lilita-one-regular {
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.displayMessage{
+  transition: opacity 3s ease;
+  opacity: 1;
+  font-family: "Uncial Antiqua", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem;
+}
+.fade{
+  opacity: 0;
+}
+.mainscreenDiv{
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 1rem;
+}
+.paragraphDiv{
+  width: 60%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.mainButton{
+  background-color:#ffc65d;
+  color:#ff8f7a;
+  font-size:1.5rem;
+  font-weight:medium;
+  border: none;
+  padding: 0.75rem 2rem 0.75rem 2rem;
+  border-radius: 1.75rem;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+}
+.mainButton:hover{
+  background-color:#ecb856;
+}
+.icon{
+  text-shadow: 4px 4px 0 #3C3B3B;
+  font-weight: bold;
+  transform: rotate(-20deg)
+}
+.runnerContainer {
+  position: relative;   /* 👈 anchor for the runner */
+  width: 100vw;
+  height: 10rem;
+  overflow: hidden;     /* hide off-screen parts */
+}
+
+.runner {
+  position: absolute;
+  left: -8rem;          /* start fully off-screen */
+  animation: moveAcross 3s linear infinite;
+}
+
+@keyframes moveAcross {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw + 8rem));
+  }
+}
+
+.cups {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.cup {
+  width: 13.8rem;
+  height: 19rem;
+  cursor: pointer;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+.cup2{
+  width: fit-content;
+  height: 20rem;
+  cursor: pointer;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-image: url('./assets/knightMasked.png');
+}
+
+.stone {
+  width: 10.5rem;
+  height: 10.25rem;
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  src: url('./assets/knighted3.png');
+}
+
+.secondTrialPage{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 0.75rem;
+  padding-top: 2rem;
+}
+.thirdTrialPage{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 0.75rem;
+}
+.question-image{
+  width: 15rem;
+  height: 12rem;
+}
+.quiz-div{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 1rem;
+}
+.question-text{
+  font-size: 1.75rem;
+  font-family: "Rubik Bubbles", serif;
+  color: #ffefca;
+}
+.options-div{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+.option-section{
+   width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  column-gap: 0.75rem;
+}
+.question-option{
+  width: 30rem;
+  height: 3.5rem;
+  padding: 1rem;
+  font-size: 1.25rem;
+  background-color: rgba(245, 222, 179, 0);
+  border: none;
+  cursor: pointer;
+  background-image: url('./assets/questionFrame.png');
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #7a5b12;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
