@@ -86,7 +86,8 @@ body {
   position: relative;   /* 👈 anchor for the runner */
   width: 100vw;
   height: 10rem;
-  overflow: hidden;     /* hide off-screen parts */
+  overflow: hidden;
+  z-index: 1;     /* hide off-screen parts */
 }
 
 .runner {
@@ -117,7 +118,8 @@ body {
   cursor: pointer;
   position: relative;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .cup2{
   width: fit-content;
@@ -213,4 +215,21 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.miniHeart{
+  src: url('./assets/questionFrame.png');
+  width: 1rem;
+  height: 0.75rem;
+}
+.headClass{
+  width: 100%;
+  height: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 12rem;
+  column-gap: 0.5rem;
 }

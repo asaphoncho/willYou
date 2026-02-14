@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import knight1 from './assets/myHeadNew.png'
-import knight2 from './assets/knightMasked.png'
+import knight1 from './assets/unmasked2.png'
+import knight2 from './assets/masked2.png'
+import head from './assets/heart5.png'
 import knightHeadless from './assets/headless2.png'
 
 
-function secondTrial(){
+function secondTrial({handleSwitchGame}){
     const initialCups = [
         { id: 0 },
         { id: 1 },
@@ -17,7 +18,9 @@ function secondTrial(){
     const [stoneCupId, setStoneCupId] = useState(null);
     const [phase, setPhase] = useState("reveal");
     const [selectedCup, setSelectedCup] = useState(null);
+    const [score, setScore] = useState(0);
     const [gameStart, setGameStart] = useState(false)
+    const [hearts, setHearts] =  useState([])
 
     function shuffle(){
         const randomId = Math.floor(Math.random() * 4);
@@ -73,7 +76,16 @@ function secondTrial(){
     const handleGuess = (cupId) => {
     if (phase !== "guess") return;
     setSelectedCup(cupId);
+    if(cupId === stoneCupId){
+        setScore(s => s + 1)
+        setHearts(h => [...h, `heart${score}`])
+        if(score === 4){
+            setTimeout(()=> handleSwitchGame(), 2000)
+        }
+
+    }
     setPhase("result");
+    
     };
     
 
@@ -81,7 +93,8 @@ function secondTrial(){
     return(<>
     <div className="secondTrialPage">
         <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF DISCERNMENT</span>
-        <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>All these knights are just and equally fair. Find the one for whom your heart yearns.</span>
+        <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>All these knights are equally as just and equally fair. Find the one for whom your heart yearns.</span>
+        <div className="headClass">{hearts.length > 0? hearts.map(heart =>(<img src={head} className="miniHeart" key={heart}></img>)): null}</div>
         <div className="cups">
             {cups.map((cup) => (
                 <motion.div
@@ -89,18 +102,9 @@ function secondTrial(){
                 layout
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="cup"
-                style={phase === "reveal" && cup.id === stoneCupId ? {backgroundImage: `url(${knight2})`} : {backgroundImage: `url(${knight2})`}}
+                style={phase === "reveal" && cup.id === stoneCupId || phase === "result" && cup.id === stoneCupId ? {backgroundImage: `url(${knight1})`} : {backgroundImage: `url(${knight2})`}}
                 onClick={() => handleGuess(cup.id)}
                 >
-                {phase === "reveal" && cup.id === stoneCupId && (
-                    <img src={knight1} className="stone" />
-                )}
-
-                {phase === "result" &&
-                    selectedCup === cup.id &&
-                    cup.id === stoneCupId && (
-                    <img src={knight1} className="stone" />
-                    )}
                 </motion.div>
             ))}
         </div>
@@ -114,7 +118,7 @@ function secondTrial(){
             <>  
                 {selectedCup === stoneCupId ? <span style={{fontWeight:'bold', fontSize:'1.5rem', color:'#417b78', fontFamily:'"Playfair Display", serif'}}>Correct!</span> : <span style={{fontWeight:'bold', fontSize:'1.5rem', color:'#f02255', fontFamily:'"Playfair Display", serif'}}>Wrong!</span>}
                 <span style={{fontSize:'1.5rem', color:'#ffefca', fontFamily:'"Playfair Display", serif'}}></span>
-                <button className="mainButton" onClick={()=> {setPhase("reveal"); setSelectedCup(null); setStoneCupId(null); shuffle()}}>Play again</button>
+                {score < 5 ? <button className="mainButton" onClick={()=> {setPhase("reveal"); setSelectedCup(null); setStoneCupId(null); shuffle()}}>Play again</button>: null}
             </> 
         )}
     </div>      

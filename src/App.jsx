@@ -9,14 +9,15 @@ import './App.css'
 import typing from './assets/typing.mp3'
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState("intro")
+  const [currentScreen, setCurrentScreen] = useState("secondTrial")
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
   const [buttonActive, setButtonActive] = useState(true)
 
   let icons = ["","fa-solid fa-earth-africa","fa-solid fa-person-harassing", "fa-solid fa-heart", "fa-solid fa-face-tired", "fa-solid fa-wallet fa-regular fa-face-frown","fa-solid fa-hand-holding-dollar", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-angry", "fa-regular fa-lightbulb", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-frown", "fa-solid fa-handshake" ]
-  let subtitle = ["", "Since the olden days, love has always been plenty, but monye, not so much", "Valentine has always been a cause of great debate", "The women claimed it was a special day to honour love and devotion", "The men, however, saw it as unnecesary trouble", "Men would check their account balance, to great sadness", "The women believed the men were just too broke", "The men on the other hand, believed the women were just broke beeshes", "And so the tension grows the closer valentine gets each year", "In desperation, some men devised a mischievous tactic.", "They would break up just before and make up after Valentine.","However, this strategy is not sustainable", "And so, a council of women and men was formed."]
+  let subtitle = ["", "Since the olden days, when love was plenty, but money, not so much", "The occasion of Valentine has always been a cause of great debate in the land", "The women claimed it was a special day to honour love and devotion", "The men, however, saw it as unnecesary trouble", "Account balances were checked, to great annoyance", "The women believed the men were just too broke", "The men on the other hand, believed the women were just hungry beeshes", "And so the tension grows the closer valentine gets each year", "In desperation, most men devised a mischievous tactic.", "They would break up just before and make up after the dreadful occasion.","However, this strategy could only last for so long before it was found out", "And so, a council of women and men was formed.", "Together, they came up with the most fair...and most dramatic solution", "A sacred test of the heart, the mind and the will", "A trial to determine one's Valentine-worthiness.",
+  "...THE TRIALS OF LOVE!"]
   let messages = [
   "THE TRIALS OF LOVE",
   "Since the days of olde, when hearts were bold and purses… less so.",
@@ -28,7 +29,7 @@ function App() {
   "The men believed the women were, in truth, simply very hungry.",
   "Thus arose great tension each year as the fateful day drew nigh.",
   "In desperation, many a man devised cunning means of escape.",
-  "Some did part ways just before the day, only to reunite when the danger had passed.",
+  "They did part ways just before the day, only to reunite when the danger had passed.",
   "Yet such trickery could not endure forever.",
   "And so, a wise council—of maidens and men alike—was convened.",
   "From their counsel came a solution most fair… and most dramatic.",
@@ -115,7 +116,7 @@ function App() {
   else if(currentScreen == "secondTrial"){return(
     <>
       <div className='body'>
-        <SecondTrial/>
+        <SecondTrial handleSwitchGame={()=> setCurrentScreen("thirdTrial")}/>
       </div>
     </>
   )}

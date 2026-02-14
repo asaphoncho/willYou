@@ -22,6 +22,48 @@ function firstTrial({handleSwitchGame}){
     const [clickCounter, setClickCounter] = useState(0)
     const [frameCounter, setFrameCounter] = useState(0)
     const [clickedState, setClickedState] = useState(0)
+    const [attemptRemarks, setAttemptRemarks] = useState()
+    const [remarkType, setRemarkType] = useState()
+    let badRemarks = ["Thou swing’st like a drunken squire!",
+  "Hah! Is that thy best, clumsy peasant?",
+  "I have seen turtles charge faster than thee!",
+  "Art thou blind, or merely cursed?",
+  "By the king’s beard, thou fightest like a baker!",
+  "Swing harder, milord! I scarce felt the wind!",
+  "Didst thou drop thy courage with thy aim?",
+  "Thy reflexes nap whilst I dance!",
+  "A snail would have struck me by now!",
+  "Come now, swing true — or swing home!",
+  "Is thy arm made of pudding?",
+  "Thou couldst not strike water in the sea!",
+  "I shall keep thy heart and thy dignity!",
+  "Even the village fool aims better!",
+  "Mayhap love hath weakened thy blade!",
+  "Thou fightest as though wooing a ghost!",
+  "By all the saints, that was pitiful!",
+  "Keep trying, dear knight — I adore the sport!",
+  "Thy heart is mine, and thy aim is tragic!",
+  "Hast thou mistaken me for the wind?"]
+    let goodRemarks = ["Curse thee and thy swift hands!",
+  "Ack! A foul strike!",
+  "By the heavens, thou hast teeth!",
+  "Witchcraft! That blow was witchcraft!",
+  "Mercy! Thou art quicker than thou look!",
+  "I felt that through my doublet!",
+  "Well struck, knave!",
+  "Blast it all!",
+  "Thou grow’st troublesome!",
+  "I misjudged thee!",
+  "That stung worse than heartbreak!",
+  "Confound thee!",
+  "I shall remember that insult!",
+  "Is that fury I see?",
+  "Very well — thou hast my attention!",
+  "A worthy strike!",
+  "Drat! Thou hast some skill after all!",
+  "That blow was most impolite!",
+  "Thou fightest with passion!",
+  "The game grows dangerous!"]
     let frame1arr = [frame1, frame1hue]
     let frame2arr = [frame2, frame2hue]
     let frame3arr = [frame3, frame3hue]
@@ -32,21 +74,44 @@ function firstTrial({handleSwitchGame}){
     let hearts = [heartImg0, heartImg1, heartImg2, heartImg3, heartImg4, heartImg5,]
     
     function gotNinja(){
+        let randomIndex = Math.floor(Math.random(goodRemarks)*(goodRemarks.length))
         if(clickCounter < 5){
             if(clickCounter >= 1){
                 setClickCounter(c => c + 2)
+                setRemarkType("good")
+                setAttemptRemarks(goodRemarks[randomIndex])
+                setTimeout(()=>{setAttemptRemarks("")}, 1500)
                 if(clickCounter === 4){
-                    setTimeout(handleSwitchGame(), 1500)
+                    setRemarkType("good")
+                    setAttemptRemarks("Fine! You win!")
+                    setTimeout(()=>{handleSwitchGame(); setAttemptRemarks("")}, 1500)
                 }
             }
             if(clickCounter === 0){
                 setClickCounter(c => c + 1)
+                setRemarkType("good")
+                setAttemptRemarks(goodRemarks[randomIndex])
+                setTimeout(()=>{setAttemptRemarks("")}, 1500)
             }
            // animate();
         }
         else if(clickCounter === 5){
 
         }
+    }
+    function missedNinja(){
+        let randomIndex = Math.floor(Math.random(badRemarks)*(badRemarks.length))
+        if(clickCounter < 5 &&  clickCounter > 0){
+            setRemarkType("bad")
+            setClickCounter(c => c - 1);
+            setAttemptRemarks(badRemarks[randomIndex])
+            setTimeout(()=>setAttemptRemarks(""), 1500)     
+        }
+        else if(clickCounter === 0){
+            setRemarkType("bad")
+            setAttemptRemarks(badRemarks[randomIndex])
+            setTimeout(()=>setAttemptRemarks(""), 1500)
+        }   
     }
     
     function animate() {
@@ -64,7 +129,7 @@ function firstTrial({handleSwitchGame}){
     }
 
     return(<>
-        <div onClick={clickCounter < 5 &&  clickCounter > 0? ()=>{setClickCounter(c => c - 1)}: null} style={{width:'100vw', display:'flex', flexDirection:'column', alignItems:'center'}}>            
+        <div onClick={missedNinja} style={{width:'100vw', display:'flex', flexDirection:'column', alignItems:'center', zIndex:0}}>            
             <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca', rowGap:'1.5rem', paddingTop:'2rem'}}>
                 <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF SWIFTNESS</span>
                 <span>The ninja is about to get away with your heart. Take it back and return it to the rightful owner! 😏</span>
@@ -74,7 +139,7 @@ function firstTrial({handleSwitchGame}){
             <div className="runnerContainer" style={{marginTop:'1rem'}}>
                 <img onClick={gotNinja} className="runner" src={frames[frameCounter][0]} style={{height:'9rem', width:'9rem', cursor:'pointer'}} alt="" />
             </div>
-            <span style={{fontSize:'1.5rem', fontWeight:'bold', color:'#2a8c89'}}>Nice one!</span>       
+            <span style={ remarkType === "bad"  ? {fontSize:'1.5rem', fontWeight:'bold', color:'#f02255'} :{fontSize:'1.5rem', fontWeight:'bold', color:'#2a8c89'}}>{attemptRemarks}</span>       
         </div>
     </>)
 }
