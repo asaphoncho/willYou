@@ -5,11 +5,12 @@ import Intro from './Intro.jsx'
 import FirstTrial from './FirstTrial.jsx'
 import SecondTrial from './SecondTrial.jsx'
 import ThirdTrial from './thirdTrial.jsx'
+import outro from './Outro.jsx'
 import './App.css'
 import typing from './assets/typing.mp3'
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState("secondTrial")
+  const [currentScreen, setCurrentScreen] = useState("intro")
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
@@ -123,7 +124,14 @@ function App() {
   else if(currentScreen == "thirdTrial"){return(
     <>
       <div className='body'>
-        <ThirdTrial/>
+        <ThirdTrial handleSwitchGame={()=> setCurrentScreen("outro")}/>
+      </div>
+    </>
+  )}
+  else if(currentScreen == "outro"){return(
+    <>
+      <div className='body'>
+        <Outro/>
       </div>
     </>
   )}

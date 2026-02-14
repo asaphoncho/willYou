@@ -93,7 +93,7 @@ function secondTrial({handleSwitchGame}){
     return(<>
     <div className="secondTrialPage">
         <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF DISCERNMENT</span>
-        <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>All these knights are equally as just and equally fair. Find the one for whom your heart yearns.</span>
+        <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>These knights stand equal in honor and in grace. Seek now the one for whom thy heart doth most ardently yearn.</span>
         <div className="headClass">{hearts.length > 0? hearts.map(heart =>(<img src={head} className="miniHeart" key={heart}></img>)): null}</div>
         <div className="cups">
             {cups.map((cup) => (

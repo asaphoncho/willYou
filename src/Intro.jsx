@@ -28,8 +28,12 @@ function Intro({fadeOut, currentMessage, messages, icons, isRunning, changeMessa
                 {currentMessage < messages.length ? 
                 buttonActive ? <button className='mainButton' onClick={isRunning ? null : changeMessage}>Start</button> : null 
                 : <>
+                    <div style={{fontSize: '1.5rem', fontFamily:'"Playfair Display", serif', color:'#ffefca', rowGap:'0.5rem', display:'flex'}}>
+                        <span>So thou hast chosen to undertake the Trials. Heed this warning well: they are no gentle sport. Many a brave soul hath perished in their attempt.</span>
+                        <span>Shouldst thou press onward from this moment forth, thou dost willingly wager thy very life, that thou might prove thy worth in love before thine chosen one.</span>
+                        <span>Thy first charge is thus: reclaim thine heart, which hath been most treacherously stolen by the famed and cunning shadow-blade — the Valentine Marauder.</span>
+                    </div>
                     <button className='mainButton' onClick={handleSwitch}>Start Now</button>
-                    <button className='mainButton' onClick={()=>{handleRestart; changeMessage}}>Replay Intro</button>
                 </>
                 }
             </div>

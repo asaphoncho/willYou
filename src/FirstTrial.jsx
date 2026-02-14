@@ -130,9 +130,9 @@ function firstTrial({handleSwitchGame}){
 
     return(<>
         <div onClick={missedNinja} style={{width:'100vw', display:'flex', flexDirection:'column', alignItems:'center', zIndex:0}}>            
-            <div style={{width:'100%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca', rowGap:'1.5rem', paddingTop:'2rem'}}>
+            <div style={{width:'80%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize: '1.5rem', fontFamily:'"Jaini", serif', color:'#ffefca', rowGap:'1.5rem', paddingTop:'2rem', textAlign:'center'}}>
                 <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF SWIFTNESS</span>
-                <span>The ninja is about to get away with your heart. Take it back and return it to the rightful owner! 😏</span>
+                <span>The shadowed rogue maketh haste with thine heart! Pursue him swift and reclaim that which is rightfully thine — and restore it unto its true keeper.</span>
                 <img src={hearts[clickCounter]} style={{height:'16rem', width:'18rem'}} alt="" />
                 <h1 style={{fontFamily:'"Playfair Display", serif', fontSize:'8rem', fontWeight:'medium', position:'absolute', marginTop:'12rem' }}>{clickCounter}</h1>         
             </div>                    

@@ -1,44 +1,46 @@
 import { useEffect, useState } from "react";
 import kiss from './assets/kizzes.png'
 import sky from './assets/sky.png'
-import traffic from './assets/heart4.png'
-import heartImg4 from './assets/heart5.png'
+import traffic from './assets/traffic2.png'
+import heartImg4 from './assets/heart00.png'
+import heartImg0 from './assets/heart0.png'
 
-function thirdTrial(){
+function thirdTrial(handleSwitchGame){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [selectedOption, setSelectedOption] = useState(null)
     const [score, setScore] = useState(0)
     const [showValidation, setShowValidation] = useState(false)
+    const [hearts, setHearts] =  useState([])
 
     let questionSet = [
         {
-            question: "The first time we met, I was arrested for what offence?",
+            question: "When first our paths did cross, for what alleged misdeed was I seized and brought to account?",
             options: ["Wrong parking", "Illegal U-turn", "Incomplete papers", "Reckless driving"],
             correctAnswer: "Illegal U-turn",
-            image: heartImg4
+            image: traffic
         },
         {
-            question: "When did we have our first kiss?",
+            question: "Upon what blessed day did our lips first meet in tender union?",
             options: ["14th, February 2021", "16th February 2021", "12th, February 2021", "15th, February 2021"],
             correctAnswer: "12th, February 2021",
             image: kiss
         },
         {
-            question: "Whenever we are far apart, look at the _____ and you will feel close to me",
+            question: "Whenever distance doth part us, gaze upon the _____, and thou shalt feel my presence near thee.",
             options: ["Sky", "Stars", "Moon", "Trees"],
             correctAnswer: "Stars",
             image: sky
         },
         {
-            question: "What was the first text message your soulmate sent to you via dm?",
+            question: "What were the first words thy beloved did send unto thee in secret missive (DM)?",
             options: ["Heyyyyy!", "Hiya!", "Your turn", "👁️👁️"],
             correctAnswer: "Your turn",
             image: heartImg4
         }, 
         {
-            question: "Who first said I love you?",
-            options: ["Me", "Me", "Me", "Me"],
-            correctAnswer: "Me",
+            question: 'Upon what day did we first confess our love, speaking the sacred words, “I cherish thee”?',
+            options: ["1st April, 2020", "20th April, 2020", "26th April, 2020", "24th April, 2020"],
+            correctAnswer: "26th April, 2020",
             image: heartImg4
         }
         
@@ -60,23 +62,30 @@ function thirdTrial(){
     const currentQuestion = questionSet[currentQuestionIndex]
 
     setShowValidation(true)
-
-    if (selectedOption === currentQuestion.correctAnswer) {
-        setScore(prev => prev + 10)
-        console.log("correct!")
-    }
-
-    setTimeout(() => {
-        setShowValidation(false)
-        setSelectedOption(null)
-        setCurrentQuestionIndex(prev => prev + 1)
-    }, 1500)
+        if (selectedOption === currentQuestion.correctAnswer) {
+            setScore(prev => prev + 1)
+            console.log("correct!")
+            setHearts(h => [...h, "goodheart"])
+        }
+        console.log(hearts)
+        setTimeout(() => {
+            setShowValidation(false)
+            setSelectedOption(null)
+            if(currentQuestionIndex < (questionSet.length - 1)){
+                setCurrentQuestionIndex(prev => prev + 1)
+            }
+            if(currentQuestionIndex >= (questionSet.length - 1)){
+                handleSwitchGame()
+            }
+        }, 1500)
     }
 
     return(<>
         <div className="thirdTrialPage">
             <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF KNOWLEDGE</span>
-            <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>Let's see how well you know your partner {score}</span>
+            <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>Let us wander the halls of cherished memory and recall the days of old.</span>
+            <div className="headClass2">
+                {hearts.length > 0? hearts.map((heart, index) =>(<img src={heart === "goodHeart" ? heartImg0 : heartImg4} className="miniHeart" key={index}></img>)): null}</div>
             <div className="quiz-div">
                 <img className="question-image" src={questionSet[currentQuestionIndex].image} alt="" />
                 <span className="question-text">{questionSet[currentQuestionIndex].question}</span>

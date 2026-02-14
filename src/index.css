@@ -162,7 +162,7 @@ body {
   row-gap: 0.75rem;
 }
 .question-image{
-  width: 15rem;
+  width: 18rem;
   height: 12rem;
 }
 .quiz-div{
@@ -232,4 +232,16 @@ body {
   position: absolute;
   top: 12rem;
   column-gap: 0.5rem;
+}
+.headClass2{
+  width: 100%;
+  height: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 8.5rem;
+  column-gap: 0.5rem;
+  color: #ffefca;
 }
