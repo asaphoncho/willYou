@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import Intro from './intro.jsx'
+import Intro from './Intro.jsx'
 import FirstTrial from './FirstTrial.jsx'
 import SecondTrial from './SecondTrial.jsx'
 import ThirdTrial from './thirdTrial.jsx'
@@ -9,13 +9,14 @@ import './App.css'
 import typing from './assets/typing.mp3'
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState("thirdTrial")
+  const [currentScreen, setCurrentScreen] = useState("intro")
   const [currentMessage, setCurrentMessage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
   const [buttonActive, setButtonActive] = useState(true)
 
   let icons = ["","fa-solid fa-earth-africa","fa-solid fa-person-harassing", "fa-solid fa-heart", "fa-solid fa-face-tired", "fa-solid fa-wallet fa-regular fa-face-frown","fa-solid fa-hand-holding-dollar", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-angry", "fa-regular fa-lightbulb", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-frown", "fa-solid fa-handshake" ]
+  let subtitle = ["", "Since the olden days, love has always been plenty, but monye, not so much", "Valentine has always been a cause of great debate", "The women claimed it was a special day to honour love and devotion", "The men, however, saw it as unnecesary trouble", "Men would check their account balance, to great sadness", "The women believed the men were just too broke", "The men on the other hand, believed the women were just broke beeshes", "And so the tension grows the closer valentine gets each year", "In desperation, some men devised a mischievous tactic.", "They would break up just before and make up after Valentine.","However, this strategy is not sustainable", "And so, a council of women and men was formed."]
   let messages = [
   "THE TRIALS OF LOVE",
   "Since the days of olde, when hearts were bold and purses… less so.",
@@ -100,7 +101,7 @@ function App() {
   if(currentScreen == "intro"){return (
     <>
       <div className='body'>
-        <Intro fadeOut={fadeOut} currentMessage={currentMessage} messages={messages} icons={icons} isRunning={isRunning} buttonActive={buttonActive} changeMessage={changeMessage} startTrials={startTrials}/>
+        <Intro fadeOut={fadeOut} currentMessage={currentMessage} messages={messages} icons={icons} isRunning={isRunning} buttonActive={buttonActive} changeMessage={changeMessage} startTrials={startTrials} subtitle={subtitle} restart={()=> setCurrentMessage(0)}/>
       </div>
     </>
   )}
