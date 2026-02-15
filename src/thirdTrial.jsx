@@ -22,8 +22,8 @@ function thirdTrial({handleSwitchGame}){
         },
         {
             question: "Upon what blessed day did our lips first meet in tender union?",
-            options: ["14th, February 2021", "16th February 2021", "12th, February 2021", "15th, February 2021"],
-            correctAnswer: "12th, February 2021",
+            options: ["14th, February 2021", "16th February 2021", "13th, February 2021", "15th, February 2021"],
+            correctAnswer: "13th, February 2021",
             image: kiss
         },
         {
@@ -40,8 +40,8 @@ function thirdTrial({handleSwitchGame}){
         }, 
         {
             question: 'Upon what day did we first confess our love, speaking the sacred words, “I cherish thee”?',
-            options: ["1st April, 2020", "20th April, 2020", "26th April, 2020", "24th April, 2020"],
-            correctAnswer: "26th April, 2020",
+            options: ["27th April, 2020", "20th April, 2020", "26th April, 2020", "24th April, 2020"],
+            correctAnswer: "27th April, 2020",
             image: heartImg4
         }
         
