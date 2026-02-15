@@ -4,8 +4,9 @@ import sky from './assets/sky.png'
 import traffic from './assets/traffic2.png'
 import heartImg4 from './assets/heart00.png'
 import heartImg0 from './assets/heart0.png'
+import phone from './assets/phone.png'
 
-function thirdTrial(handleSwitchGame){
+function thirdTrial({handleSwitchGame}){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [selectedOption, setSelectedOption] = useState(null)
     const [score, setScore] = useState(0)
@@ -35,7 +36,7 @@ function thirdTrial(handleSwitchGame){
             question: "What were the first words thy beloved did send unto thee in secret missive (DM)?",
             options: ["Heyyyyy!", "Hiya!", "Your turn", "👁️👁️"],
             correctAnswer: "Your turn",
-            image: heartImg4
+            image: phone
         }, 
         {
             question: 'Upon what day did we first confess our love, speaking the sacred words, “I cherish thee”?',
@@ -83,9 +84,7 @@ function thirdTrial(handleSwitchGame){
     return(<>
         <div className="thirdTrialPage">
             <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF KNOWLEDGE</span>
-            <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>Let us wander the halls of cherished memory and recall the days of old.</span>
-            <div className="headClass2">
-                {hearts.length > 0? hearts.map((heart, index) =>(<img src={heart === "goodHeart" ? heartImg0 : heartImg4} className="miniHeart" key={index}></img>)): null}</div>
+            <span style={{fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca'}}>Let us wander the halls of cherished memory and recall the days of old. Score: {score}</span>
             <div className="quiz-div">
                 <img className="question-image" src={questionSet[currentQuestionIndex].image} alt="" />
                 <span className="question-text">{questionSet[currentQuestionIndex].question}</span>

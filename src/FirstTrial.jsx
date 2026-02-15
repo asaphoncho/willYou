@@ -17,6 +17,8 @@ import heartImg2 from './assets/heart2.png'
 import heartImg3 from './assets/heart3.png'
 import heartImg4 from './assets/heart4.png'
 import heartImg5 from './assets/heart5.png'
+import hitSound from './assets/hitSound.wav'
+import { audio } from "framer-motion/client";
 
 function firstTrial({handleSwitchGame}){
     const [clickCounter, setClickCounter] = useState(0)
@@ -75,6 +77,7 @@ function firstTrial({handleSwitchGame}){
     
     function gotNinja(){
         let randomIndex = Math.floor(Math.random(goodRemarks)*(goodRemarks.length))
+        new Audio(hitSound).play()
         if(clickCounter < 5){
             if(clickCounter >= 1){
                 setClickCounter(c => c + 2)
@@ -130,9 +133,9 @@ function firstTrial({handleSwitchGame}){
 
     return(<>
         <div onClick={missedNinja} style={{width:'100vw', display:'flex', flexDirection:'column', alignItems:'center', zIndex:0}}>            
-            <div style={{width:'80%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize: '1.5rem', fontFamily:'"Jaini", serif', color:'#ffefca', rowGap:'1.5rem', paddingTop:'2rem', textAlign:'center'}}>
+            <div style={{width:'80%', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', fontSize: '2rem', fontFamily:'"Jaini", serif', color:'#ffefca', rowGap:'0.75rem', paddingTop:'2rem', textAlign:'center'}}>
                 <span className="displayMessage" style={{fontSize:'4rem', color:'#ffc65d'}}>TRIAL OF SWIFTNESS</span>
-                <span>The shadowed rogue maketh haste with thine heart! Pursue him swift and reclaim that which is rightfully thine — and restore it unto its true keeper.</span>
+                <span>The shadowed rogue maketh haste with thine heart! Pursue him swift and reclaim that which is rightfully thine — and restore it unto its true keeper. 😏</span>
                 <img src={hearts[clickCounter]} style={{height:'16rem', width:'18rem'}} alt="" />
                 <h1 style={{fontFamily:'"Playfair Display", serif', fontSize:'8rem', fontWeight:'medium', position:'absolute', marginTop:'12rem' }}>{clickCounter}</h1>         
             </div>                    

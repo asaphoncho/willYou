@@ -1,8 +1,27 @@
-import {useState} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import './App.css'
+import mySound from "./assets/folkSong.mp3";
 
 
 function Intro({fadeOut, currentMessage, messages, icons, isRunning, changeMessage, buttonActive, startTrials, subtitle,restart}){
+    const audioRef = useRef(null);
+    // Create audio once
+
+function playSong(){
+        audioRef.current = new Audio(mySound);
+        audioRef.current.loop = true;
+        audioRef.current.volume = 0.5;
+    
+        audioRef.current.play().catch(() => {
+          // Autoplay may fail unless triggered by user interaction
+          console.log("Autoplay blocked by browser.");
+        });
+    
+        return () => {
+          audioRef.current.pause();
+          audioRef.current = null;
+        };
+      }
     
 
     function handleSwitch(){
@@ -26,12 +45,12 @@ function Intro({fadeOut, currentMessage, messages, icons, isRunning, changeMessa
                     <i style={{color:'#ffefca'}} className=" fa-solid fa-scroll"></i>
                 </div>}
                 {currentMessage < messages.length ? 
-                buttonActive ? <button className='mainButton' onClick={isRunning ? null : changeMessage}>Start</button> : null 
+                buttonActive ? <button className='mainButton' onClick={isRunning ? null : ()=>{playSong(); changeMessage()}}>Start</button> : null 
                 : <>
-                    <div style={{fontSize: '1.5rem', fontFamily:'"Playfair Display", serif', color:'#ffefca', rowGap:'0.5rem', display:'flex'}}>
+                    <div style={{width:'60%', padding: '1rem', fontSize: '2rem', fontFamily:'"Playfair Display", serif', color:'#ffefca', rowGap:'2rem', display:'flex', flexDirection:'column'}}>
                         <span>So thou hast chosen to undertake the Trials. Heed this warning well: they are no gentle sport. Many a brave soul hath perished in their attempt.</span>
                         <span>Shouldst thou press onward from this moment forth, thou dost willingly wager thy very life, that thou might prove thy worth in love before thine chosen one.</span>
-                        <span>Thy first charge is thus: reclaim thine heart, which hath been most treacherously stolen by the famed and cunning shadow-blade — the Valentine Marauder.</span>
+                        <span>Thy first charge is thus: reclaim thine heart, which hath been most treacherously stolen by the famed and cunning shadow-blade — the Valentine Marauder.🥷</span>
                     </div>
                     <button className='mainButton' onClick={handleSwitch}>Start Now</button>
                 </>

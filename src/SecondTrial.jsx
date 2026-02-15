@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import knight1 from './assets/unmasked2.png'
 import knight2 from './assets/masked2.png'
-import head from './assets/heart5.png'
+import head from './assets/heart00.png'
 import knightHeadless from './assets/headless2.png'
+import shuffleSound from './assets/shuffleNew.wav'
 
 
 function secondTrial({handleSwitchGame}){
@@ -23,6 +24,7 @@ function secondTrial({handleSwitchGame}){
     const [hearts, setHearts] =  useState([])
 
     function shuffle(){
+        new Audio(shuffleSound).play()
         const randomId = Math.floor(Math.random() * 4);
         setStoneCupId(randomId);
 

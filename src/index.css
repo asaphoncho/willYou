@@ -94,6 +94,7 @@ body {
   position: absolute;
   left: -8rem;          /* start fully off-screen */
   animation: moveAcross 3s linear infinite;
+  z-index: 1;
 }
 
 @keyframes moveAcross {
@@ -163,7 +164,7 @@ body {
 }
 .question-image{
   width: 18rem;
-  height: 12rem;
+  height: 13rem;
 }
 .quiz-div{
   width: 100%;
@@ -175,8 +176,8 @@ body {
   row-gap: 1rem;
 }
 .question-text{
-  font-size: 1.75rem;
-  font-family: "Rubik Bubbles", serif;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
   color: #ffefca;
 }
 .options-div{
@@ -219,8 +220,8 @@ body {
 
 .miniHeart{
   src: url('./assets/questionFrame.png');
-  width: 1rem;
-  height: 0.75rem;
+  width: 1.75rem;
+  height: 1.5rem;
 }
 .headClass{
   width: 100%;

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Intro from './Intro.jsx'
 import FirstTrial from './FirstTrial.jsx'
 import SecondTrial from './SecondTrial.jsx'
 import ThirdTrial from './thirdTrial.jsx'
-import outro from './Outro.jsx'
+import Outro from './Outro.jsx'
 import './App.css'
 import typing from './assets/typing.mp3'
 
@@ -15,6 +15,7 @@ function App() {
   const [isRunning, setIsRunning] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
   const [buttonActive, setButtonActive] = useState(true)
+  
 
   let icons = ["","fa-solid fa-earth-africa","fa-solid fa-person-harassing", "fa-solid fa-heart", "fa-solid fa-face-tired", "fa-solid fa-wallet fa-regular fa-face-frown","fa-solid fa-hand-holding-dollar", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-angry", "fa-regular fa-lightbulb", "fa-regular fa-face-grin-tongue-squint", "fa-regular fa-face-frown", "fa-solid fa-handshake" ]
   let subtitle = ["", "Since the olden days, when love was plenty, but money, not so much", "The occasion of Valentine has always been a cause of great debate in the land", "The women claimed it was a special day to honour love and devotion", "The men, however, saw it as unnecesary trouble", "Account balances were checked, to great annoyance", "The women believed the men were just too broke", "The men on the other hand, believed the women were just hungry beeshes", "And so the tension grows the closer valentine gets each year", "In desperation, most men devised a mischievous tactic.", "They would break up just before and make up after the dreadful occasion.","However, this strategy could only last for so long before it was found out", "And so, a council of women and men was formed.", "Together, they came up with the most fair...and most dramatic solution", "A sacred test of the heart, the mind and the will", "A trial to determine one's Valentine-worthiness.",
